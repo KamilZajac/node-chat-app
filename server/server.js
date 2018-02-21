@@ -18,16 +18,14 @@ io.on('connection', (socket)=>{
         console.log('disconnected')
     })
 
-    socket.emit('newMessage', {
-      from: 'server',
-      text: 'eloelo',
-      createdAt: 'today'
-    });
-
-
     socket.on('createMessage', (data)=>{
       console.log(data)
-    })
+      io.emit('newMessage', {
+        from: data.from,
+        text: data.text,
+        createdAt: new Date().getTime()
+      })
+    });
   });
 
 
