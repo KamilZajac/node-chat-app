@@ -17,7 +17,19 @@ io.on('connection', (socket)=>{
     socket.on('disconnect', () => {
         console.log('disconnected')
     })
-});
+
+    socket.emit('newMessage', {
+      from: 'server',
+      text: 'eloelo',
+      createdAt: 'today'
+    });
+
+
+    socket.on('createMessage', (data)=>{
+      console.log(data)
+    })
+  });
+
 
 
 
